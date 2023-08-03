@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Periodic Table Helper</string>
+    <string name="about">About</string>
+    <string name="sort">Sort</string>
+    <string name="sortNameAscending">By Name, A - Z)</string>
+    <string name="sortNameDescending">By Name, Z - A)</string>
+    <string name="alphabetical_by_symbol">By Symbol A - Z)</string>
+    <string name="atomic_number_ascending">By Atomic Number, Ascending)</string>
+    <string name="numerically_by_atomic_number_descending">By Atomic Number, Descending)</string>
+    <string name="calculator">Calculator</string>
+    <string name="title_activity_search_result">SearchResult</string>
+    <string name="searchFail1">Sorry, no matching results found.</string>
+    <string name="search">Search</string>
+    <string name="calc_description">Welcome to the atomic mass calculator. Enter elements by their symbol (eg. \'H\' for Hydrogen). Enter all calculations as you would in a standard calculator.\n</string>
+    <string name="calculate">Calculate</string>
+    <string name="_2_h_o">2 * H + O</string>
+    <string name="x">X</string>
+    <string name="explainCalc1">Welcome to the atomic mass calculator. Enter elements by name or symbol, followed by the amount of that element. Separate elements with a space. For example H2O would be entered as \'H2 O\'</string>
+    <string name="h2_o">H2 O</string>
+    <string name="back">Back</string>
+</resources>

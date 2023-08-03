@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <include
+        layout="@layout/toolbar_basic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/calcDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/explainCalc1"/>
+
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:padding="5dp">
+
+        <EditText
+            android:id="@+id/calcTextInput"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_marginTop="20dp"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:hint="@string/h2_o"
+            android:singleLine="true" />
+
+        <ImageButton
+            android:id="@+id/calcClearText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="end|center_vertical"
+            android:background="@drawable/delete"
+            android:layout_marginRight="10dp"
+            android:contentDescription="@string/x"
+            android:onClick="clearInput"/>
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/calcTextSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/calculate"
+        android:onClick="onInput"/>
+
+    <TextView
+        android:id="@+id/calcOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
