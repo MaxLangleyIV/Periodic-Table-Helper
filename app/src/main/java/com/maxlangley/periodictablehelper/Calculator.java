@@ -95,6 +95,7 @@ public class Calculator extends AppCompatActivity {
         return 0.0;
     }
 
+
     public double calculateAtomicMass(String calcInput){
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String numbers = "0123456789";
@@ -115,16 +116,16 @@ public class Calculator extends AppCompatActivity {
             if (numbers.contains(currentChar)) {
 
                 elemCount.append(currentChar);
-                //Toast.makeText(this, elemCount.toString(), Toast.LENGTH_SHORT).show();
+
             }
             else if (alphabet.contains(currentChar.toUpperCase())) {
 
                 thisElem.append(currentChar);
-                //Toast.makeText(this, thisElem.toString(), Toast.LENGTH_SHORT).show();
+
             }
 
             if (currentChar.equals(" ") || i == calcInput.length()-1) {
-                //Toast.makeText(this, "In final if", Toast.LENGTH_SHORT).show();
+
                 if (elemCount.length() == 0){elemCountString = "1";}
                 else {elemCountString = elemCount.toString();}
                 elem = thisElem.toString();
@@ -141,7 +142,7 @@ public class Calculator extends AppCompatActivity {
     }
 
     public void showCalcResult(double result){
-        output.setText(String.valueOf(result));
+        output.setText(String.valueOf(result) + " g/mol");
     }
 
     public void clearInput(View view) {
