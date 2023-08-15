@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -49,36 +50,6 @@ public class Calculator extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-
-//        switch (item.getItemId()){
-//            case (R.id.alphabeticalNameSortAscending):
-//                Toast.makeText(this,"Sorted by alphabetically, by name, in ascending order.", Toast.LENGTH_SHORT).show();
-//                sortAndRefresh(layout, "ascending", elementsArray);
-//                break;
-//
-//            case (R.id.alphabeticalNameSortDescending):
-//                Toast.makeText(this,"Sorted by alphabetically, by name, in descending order.", Toast.LENGTH_SHORT).show();
-//                layout = findViewById(R.id.main_layout);
-//                sortAndRefresh(layout, "descending", elementsArray);
-//                break;
-//
-//            case (R.id.atomicNumberSortAscending):
-//                Toast.makeText(this,"Sorted by numerically, in ascending order.", Toast.LENGTH_SHORT).show();
-//                layout = findViewById(R.id.main_layout);
-//                sortAndRefresh(layout, "numericAscending", elementsArray);
-//                break;
-//
-//            case (R.id.atomicNumberSortDescending):
-//                Toast.makeText(this,"Sorted by numerically, in descending order.", Toast.LENGTH_SHORT).show();
-//                layout = findViewById(R.id.main_layout);
-//                sortAndRefresh(layout, "numericDescending", elementsArray);
-//                break;
-//        }
-        return true;
-    }
 
     public JSONArray getJSONArray(Intent intent){
         try {
@@ -92,7 +63,9 @@ public class Calculator extends AppCompatActivity {
     }
 
     public void onInput(View view) {
+        Toast.makeText(this, (input.getText().toString().toUpperCase()), Toast.LENGTH_SHORT).show();
         showCalcResult(calculateAtomicMass(input.getText().toString().toUpperCase()));
+
     }
 
     public double getElementMassFromJSONArray(String name){
@@ -169,16 +142,10 @@ public class Calculator extends AppCompatActivity {
 
     public void showCalcResult(double result){
         output.setText(String.valueOf(result));
-        output.setTextColor(Color.WHITE);
-        output.setTextSize(25);
-        output.setGravity(Gravity.CENTER);
-        output.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.FILL_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
-        output.setPadding(0, 20, 0, 50);
     }
 
     public void clearInput(View view) {
+        output.setText("");
         input.setText("");
     }
 

@@ -18,4 +18,9 @@
     <string name="explainCalc1">Welcome to the atomic mass calculator. Enter elements by name or symbol, followed by the amount of that element. Separate elements with a space. For example H2O would be entered as \'H2 O\'</string>
     <string name="h2_o">H2 O</string>
     <string name="back">Back</string>
+    <string name="clear">Clear</string>
+    <string name="input">Input:</string>
+    <string name="molecular_mass_calculator">Molecular Mass Calculator</string>
+    <string name="result">Result:</string>
+    <string name="calculator_btn">calculator_btn</string>
 </resources>

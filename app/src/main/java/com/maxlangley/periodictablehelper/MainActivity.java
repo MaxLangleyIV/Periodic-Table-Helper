@@ -198,22 +198,20 @@ public class MainActivity extends AppCompatActivity {
             mainTextView.setTextSize(25);
             mainTextView.setPadding(0,50,0,50);
             mainTextView.setLayoutParams(new LayoutParams(
-                    LayoutParams.FILL_PARENT,
+                    LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     mainTextView.setBackground(getDrawable(R.drawable.border_basic));
                 }
             }
-            mainTextView.setOnClickListener(new View.OnClickListener() {
-                                                @Override public void onClick(View v) {
-                                                    if (hiddenTextView.getVisibility() == View.GONE) {
-                                                        hiddenTextView.setVisibility(View.VISIBLE);
-                                                    } else if (hiddenTextView.getVisibility() == View.VISIBLE) {
-                                                        hiddenTextView.setVisibility(View.GONE);
-                                                    }
-                                                }
-                                            });
+            mainTextView.setOnClickListener(v -> {
+                if (hiddenTextView.getVisibility() == View.GONE) {
+                    hiddenTextView.setVisibility(View.VISIBLE);
+                } else if (hiddenTextView.getVisibility() == View.VISIBLE) {
+                    hiddenTextView.setVisibility(View.GONE);
+                }
+            });
             //HIDDEN TEXT STRINGS
             String atomicMass = String.valueOf(element.get("atomic_mass"));
             String density = String.valueOf(element.get("density"));
@@ -411,7 +409,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         backButton.setLayoutParams(new LayoutParams(
-                LayoutParams.FILL_PARENT,
+                LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT));
         backButton.setGravity(Gravity.CENTER);
 
@@ -451,7 +449,7 @@ public class MainActivity extends AppCompatActivity {
                         elemTitle.setTextSize(25);
                         elemTitle.setGravity(Gravity.CENTER);
                         elemTitle.setLayoutParams(new LayoutParams(
-                                LayoutParams.FILL_PARENT,
+                                LayoutParams.MATCH_PARENT,
                                 LayoutParams.WRAP_CONTENT));
                         elemTitle.setPadding(0, 20, 0, 50);
 
@@ -459,14 +457,14 @@ public class MainActivity extends AppCompatActivity {
                         elemStats.setTextSize(20);
                         elemStats.setGravity(Gravity.CENTER);
                         elemStats.setLayoutParams(new LayoutParams(
-                                LayoutParams.FILL_PARENT,
+                                LayoutParams.MATCH_PARENT,
                                 LayoutParams.WRAP_CONTENT));
                         elemStats.setPadding(0, 25, 0, 25);
 
                         elemDescription.setText(summary);
                         elemDescription.setGravity(Gravity.CENTER);
                         elemDescription.setLayoutParams(new LayoutParams(
-                                LayoutParams.FILL_PARENT,
+                                LayoutParams.MATCH_PARENT,
                                 LayoutParams.WRAP_CONTENT));
                         elemDescription.setPadding(0, 25, 0, 20);
 
@@ -499,7 +497,7 @@ public class MainActivity extends AppCompatActivity {
                         elemTitle.setTextSize(25);
                         elemTitle.setGravity(Gravity.CENTER);
                         elemTitle.setLayoutParams(new LayoutParams(
-                                LayoutParams.FILL_PARENT,
+                                LayoutParams.MATCH_PARENT,
                                 LayoutParams.WRAP_CONTENT));
                         elemTitle.setPadding(0, 20, 0, 50);
 
@@ -507,14 +505,14 @@ public class MainActivity extends AppCompatActivity {
                         elemStats.setTextSize(20);
                         elemStats.setGravity(Gravity.CENTER);
                         elemStats.setLayoutParams(new LayoutParams(
-                                LayoutParams.FILL_PARENT,
+                                LayoutParams.MATCH_PARENT,
                                 LayoutParams.WRAP_CONTENT));
                         elemStats.setPadding(0, 25, 0, 25);
 
                         elemDescription.setText(summary);
                         elemDescription.setGravity(Gravity.CENTER);
                         elemDescription.setLayoutParams(new LayoutParams(
-                                LayoutParams.FILL_PARENT,
+                                LayoutParams.MATCH_PARENT,
                                 LayoutParams.WRAP_CONTENT));
                         elemDescription.setPadding(0, 25, 0, 20);
 
@@ -534,7 +532,7 @@ public class MainActivity extends AppCompatActivity {
         elemTitle.setTextSize(25);
         elemTitle.setGravity(Gravity.CENTER);
         elemTitle.setLayoutParams(new LayoutParams(
-                LayoutParams.FILL_PARENT,
+                LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT));
         elemTitle.setPadding(0, 20, 0, 50);
 

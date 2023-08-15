@@ -8,6 +8,13 @@
         android:orderInCategory="100"
         android:title="@string/search"
         app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/calc"
+        android:icon="@drawable/ic_calc"
+        android:orderInCategory="100"
+        android:title="@string/calculator_btn"
+        android:onClick="openCalc"
         app:showAsAction="always" />
 
     <item
