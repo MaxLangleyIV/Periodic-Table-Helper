@@ -21,6 +21,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -70,7 +71,7 @@ public class Calculator extends AppCompatActivity {
     }
 
     public void onInput(View view) {
-        Toast.makeText(this, (input.getText().toString().toUpperCase()), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, (input.getText().toString().toUpperCase()), Toast.LENGTH_SHORT).show();
         showCalcResult(calculateMolarMass(parseMolecularFormula(input.getText().toString())));
 
     }
@@ -82,7 +83,7 @@ public class Calculator extends AppCompatActivity {
                 String elemSymbol = (String) thisElem.get("symbol");
 
                 assert elemSymbol != null;
-                if (name.equals(elemSymbol.toUpperCase())){
+                if (name.equals(elemSymbol)){
                     return (double) thisElem.get("atomic_mass");
                 }
             }
@@ -108,12 +109,15 @@ public class Calculator extends AppCompatActivity {
 
         int i = 0;
         while (i < formula.length()) {
+
             if (formula.charAt(i) == '(') {
                 stack.add(elements);
                 elements = new ArrayList<>();
                 i++;
             }
+
             else if (formula.charAt(i) == ')') {
+
                 i++;
                 int multiplier = 1;
                 if (i < formula.length() && Character.isDigit(formula.charAt(i))) {
@@ -122,6 +126,7 @@ public class Calculator extends AppCompatActivity {
                 }
                 List<String> poppedElements = elements;
                 elements = stack.remove(stack.size() - 1);
+
                 for (String poppedElement : poppedElements) {
                     String[] elementInfo = poppedElement.split(",");
                     String elementSymbol = elementInfo[0];
@@ -129,14 +134,15 @@ public class Calculator extends AppCompatActivity {
                     elements.add(elementSymbol + "," + (count * multiplier));
                 }
             }
+
             else {
                 Pattern elementPattern = Pattern.compile("([A-Z][a-z]*)(\\d*)");
                 Matcher elementMatcher = elementPattern.matcher(formula.substring(i));
+
                 if (elementMatcher.find()) {
+
                     String elementSymbol = elementMatcher.group(1);
                     String countStr = elementMatcher.group(2);
-
-                    System.out.println(elementSymbol + " " + countStr);
 
                     int count = (countStr.isEmpty()) ? 1 : Integer.parseInt(countStr);
                     elements.add(elementSymbol + "," + count);
@@ -165,8 +171,14 @@ public class Calculator extends AppCompatActivity {
 
         for (List<String> element : elements){
             String thisElem = element.get(0);
-            double elemMass = getElementMassFromJSONArray(thisElem) * Integer.parseInt(element.get(1));
-            totalMass += elemMass;
+
+            System.out.println(thisElem);
+            double multiplier = Double.parseDouble(element.get(1));
+            System.out.println(multiplier);
+            double elemMass = getElementMassFromJSONArray(thisElem);
+            System.out.println(elemMass);
+
+            totalMass += elemMass * multiplier;
         }
 
         return  totalMass;
@@ -217,7 +229,11 @@ public class Calculator extends AppCompatActivity {
     }
 
     public void showCalcResult(double result){
-        output.setText(String.valueOf(result) + " g/mol");
+        DecimalFormat format = new DecimalFormat("#.####");
+        String formattedResult = format.format(result);
+
+        //output.setText(String.valueOf(result) + " g/mol");
+        output.setText(formattedResult + " g/mol");
     }
 
     public void clearInput(View view) {

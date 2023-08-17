@@ -23,4 +23,5 @@
     <string name="molecular_mass_calculator">Molecular Mass Calculator</string>
     <string name="result">Result:</string>
     <string name="calculator_btn">calculator_btn</string>
+    <string name="ca_oh_2">Ca(OH)2</string>
 </resources>
