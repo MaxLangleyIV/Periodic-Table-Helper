@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -37,8 +36,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="10dp"
+            android:textSize="20sp"
             android:gravity="center"
-            android:text=""
+            android:text="@string/calculator_input_is_case_sensitive_n_n_only_use_chemical_symbols"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,8 +51,8 @@
             android:layout_marginTop="16dp"
             android:padding="10dp"
             android:gravity="center"
-            android:textSize="18sp"
-            android:text="@string/explainCalc1"
+            android:textSize="22sp"
+            android:text="@string/enter_a_molecular_formula"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
             android:layout_marginRight="18dp"
             android:autofillHints="@string/ca_oh_2"
             android:gravity="center"
-            android:hint="@string/ca_oh_2"
+            android:hint="@string/ex_ca_oh_2"
             android:inputType="text"
             android:singleLine="true"
             android:text="@string/ca_oh_2"
@@ -124,6 +124,19 @@
             app:layout_constraintTop_toBottomOf="@+id/calcDescription3" />
 
         <TextView
+            android:id="@+id/output_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="104dp"
+            android:text="@string/result"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.045"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calcDescription3" />
+
+        <TextView
             android:id="@+id/input_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,18 +149,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/calcOutput" />
 
-        <TextView
-            android:id="@+id/output_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="104dp"
-            android:text="@string/result"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calcDescription3" />
+
 
     </android.support.constraint.ConstraintLayout>
 
