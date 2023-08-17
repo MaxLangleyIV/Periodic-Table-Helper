@@ -29,10 +29,8 @@ import org.json.simple.parser.ParseException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.awt.font.TextAttribute;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.AttributedString;
 
 public class MainActivity extends AppCompatActivity {
     private JSONArray elementsJSON;
@@ -43,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainLayout = (LinearLayout) findViewById(R.id.main_layout);
+        mainLayout = (LinearLayout) findViewById(R.id.inner_linear_layout);
         elementsJSON = getElementsArray();
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
@@ -98,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        ViewGroup layout = findViewById(R.id.main_layout);
+        ViewGroup layout = findViewById(R.id.inner_linear_layout);
 
         switch (item.getItemId()){
             case (R.id.alphabeticalNameSortAscending):
@@ -108,25 +106,25 @@ public class MainActivity extends AppCompatActivity {
 
             case (R.id.alphabeticalNameSortDescending):
                 Toast.makeText(this,"Sorted by alphabetically, by name, from Z - A.", Toast.LENGTH_SHORT).show();
-                layout = findViewById(R.id.main_layout);
+                layout = findViewById(R.id.inner_linear_layout);
                 sortAndRefresh(layout, "descending", elementsJSON);
                 break;
 
             case (R.id.atomicNumberSortAscending):
                 Toast.makeText(this,"Sorted by numerically, in ascending order.", Toast.LENGTH_SHORT).show();
-                layout = findViewById(R.id.main_layout);
+                layout = findViewById(R.id.inner_linear_layout);
                 sortAndRefresh(layout, "numericAscending", elementsJSON);
                 break;
 
             case (R.id.atomicNumberSortDescending):
                 Toast.makeText(this,"Sorted by numerically, in descending order.", Toast.LENGTH_SHORT).show();
-                layout = findViewById(R.id.main_layout);
+                layout = findViewById(R.id.inner_linear_layout);
                 sortAndRefresh(layout, "numericDescending", elementsJSON);
                 break;
 
             case  (R.id.alphabeticalSymbolSortAscending):
                 Toast.makeText(this,"Sorted by alphabetically, by symbol, from A - Z.", Toast.LENGTH_SHORT).show();
-                layout = findViewById(R.id.main_layout);
+                layout = findViewById(R.id.inner_linear_layout);
                 sortAndRefresh(layout, "symbolAscending", elementsJSON);
                 break;
         }

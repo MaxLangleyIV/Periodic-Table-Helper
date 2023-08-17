@@ -1,44 +1,46 @@
 package com.maxlangley.periodictablehelper;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 public class Calculator extends AppCompatActivity {
+
+    private ConstraintLayout mainLayout;
     private TextView output;
+    private TextView outputLabel;
     private EditText input;
     private JSONArray jsonArray;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
+        mainLayout = findViewById(R.id.mainConstraintLayout);
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         myToolbar.setTitle(R.string.calculator);
@@ -46,8 +48,8 @@ public class Calculator extends AppCompatActivity {
 
         jsonArray = getJSONArray(getIntent());
         output = findViewById(R.id.calcOutput);
+        outputLabel = findViewById(R.id.output_label);
         input = findViewById(R.id.calcTextInput);
-
     }
 
     @Override
@@ -72,6 +74,8 @@ public class Calculator extends AppCompatActivity {
 
     public void onInput(View view) {
         //Toast.makeText(this, (input.getText().toString().toUpperCase()), Toast.LENGTH_SHORT).show();
+        hideKeyboard();
+
         showCalcResult(calculateMolarMass(parseMolecularFormula(input.getText().toString())));
 
     }
@@ -234,11 +238,20 @@ public class Calculator extends AppCompatActivity {
 
         //output.setText(String.valueOf(result) + " g/mol");
         output.setText(formattedResult + " g/mol");
+        outputLabel.setVisibility(View.VISIBLE);
+        output.setVisibility(View.VISIBLE);
     }
 
     public void clearInput(View view) {
         output.setText("");
+        output.setVisibility(View.INVISIBLE);
+        outputLabel.setVisibility(View.INVISIBLE);
         input.setText("");
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
     }
 
 }
