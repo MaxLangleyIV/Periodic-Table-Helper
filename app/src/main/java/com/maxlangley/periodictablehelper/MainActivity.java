@@ -223,9 +223,9 @@ public class MainActivity extends AppCompatActivity {
             hiddenTextView.setId(++dynamicId);
             hiddenTextView.setText(Html.fromHtml(statsString));
             hiddenTextView.setTextColor(Color.WHITE);
-            hiddenTextView.setBackgroundColor(Color.BLACK);
+            hiddenTextView.setBackgroundColor(getResources().getColor(R.color.darkGray));
             hiddenTextView.setLayoutParams(new LayoutParams(
-                    LayoutParams.FILL_PARENT,
+                    LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
             hiddenTextView.setTextSize(20);
             hiddenTextView.setGravity(Gravity.CENTER);

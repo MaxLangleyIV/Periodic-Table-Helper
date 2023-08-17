@@ -13,6 +13,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -73,9 +74,7 @@ public class Calculator extends AppCompatActivity {
     }
 
     public void onInput(View view) {
-        //Toast.makeText(this, (input.getText().toString().toUpperCase()), Toast.LENGTH_SHORT).show();
         hideKeyboard();
-
         showCalcResult(calculateMolarMass(parseMolecularFormula(input.getText().toString())));
 
     }
@@ -103,7 +102,7 @@ public class Calculator extends AppCompatActivity {
                 }
             }
         }
-        //Toast.makeText(this, name + " not found. Please check your input and re-enter.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, name + " not found. Please check your input and re-enter.", Toast.LENGTH_SHORT).show();
         return 0.0;
     }
 
@@ -186,50 +185,6 @@ public class Calculator extends AppCompatActivity {
         }
 
         return  totalMass;
-    }
-    public double calculateAtomicMass(String calcInput){
-        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String numbers = "0123456789";
-        //String symbols = "+-*/%^()[]";
-
-        String elem;
-        String elemCountString;
-        double totalMass = 0.0;
-        StringBuilder thisElem = new StringBuilder();
-        StringBuilder elemCount = new StringBuilder();
-
-
-        for (int i = 0; i < calcInput.length(); i++) {
-
-            char thisChar = calcInput.charAt(i);
-            String currentChar = String.valueOf(thisChar);
-
-            if (numbers.contains(currentChar)) {
-
-                elemCount.append(currentChar);
-
-            }
-            else if (alphabet.contains(currentChar.toUpperCase())) {
-
-                thisElem.append(currentChar);
-
-            }
-
-            if (currentChar.equals(" ") || i == calcInput.length()-1) {
-
-                if (elemCount.length() == 0){elemCountString = "1";}
-                else {elemCountString = elemCount.toString();}
-                elem = thisElem.toString();
-
-                double thisCount = (double) Integer.parseInt(elemCountString);
-                double elemMass = getElementMassFromJSONArray(elem);
-                totalMass += thisCount * elemMass;
-                thisElem.setLength(0);
-                elemCount.setLength(0);
-            }
-        }
-
-        return totalMass;
     }
 
     public void showCalcResult(double result){
