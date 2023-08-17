@@ -20,6 +20,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class Calculator extends AppCompatActivity {
     private TextView output;
@@ -64,7 +71,7 @@ public class Calculator extends AppCompatActivity {
 
     public void onInput(View view) {
         Toast.makeText(this, (input.getText().toString().toUpperCase()), Toast.LENGTH_SHORT).show();
-        showCalcResult(calculateAtomicMass(input.getText().toString().toUpperCase()));
+        showCalcResult(calculateMolarMass(parseMolecularFormula(input.getText().toString())));
 
     }
 
@@ -95,7 +102,75 @@ public class Calculator extends AppCompatActivity {
         return 0.0;
     }
 
+    public List<List<String>> parseMolecularFormula(String formula){
+        List<List<String>> stack = new ArrayList<>();
+        List<String> elements = new ArrayList<>();
 
+        int i = 0;
+        while (i < formula.length()) {
+            if (formula.charAt(i) == '(') {
+                stack.add(elements);
+                elements = new ArrayList<>();
+                i++;
+            }
+            else if (formula.charAt(i) == ')') {
+                i++;
+                int multiplier = 1;
+                if (i < formula.length() && Character.isDigit(formula.charAt(i))) {
+                    multiplier = Character.getNumericValue(formula.charAt(i));
+                    i++;
+                }
+                List<String> poppedElements = elements;
+                elements = stack.remove(stack.size() - 1);
+                for (String poppedElement : poppedElements) {
+                    String[] elementInfo = poppedElement.split(",");
+                    String elementSymbol = elementInfo[0];
+                    int count = Integer.parseInt(elementInfo[1]);
+                    elements.add(elementSymbol + "," + (count * multiplier));
+                }
+            }
+            else {
+                Pattern elementPattern = Pattern.compile("([A-Z][a-z]*)(\\d*)");
+                Matcher elementMatcher = elementPattern.matcher(formula.substring(i));
+                if (elementMatcher.find()) {
+                    String elementSymbol = elementMatcher.group(1);
+                    String countStr = elementMatcher.group(2);
+
+                    System.out.println(elementSymbol + " " + countStr);
+
+                    int count = (countStr.isEmpty()) ? 1 : Integer.parseInt(countStr);
+                    elements.add(elementSymbol + "," + count);
+                    i += elementSymbol.length() + countStr.length();
+                }
+            }
+        }
+
+        List<List<String>> result = new ArrayList<>();
+        for (String element : elements) {
+            String[] elementInfo = element.split(",");
+            List<String> infoList = new ArrayList<>();
+            infoList.add(elementInfo[0]);
+            infoList.add(elementInfo[1]);
+            result.add(infoList);
+        }
+
+        return result;
+    }
+
+    public double calculateMolarMass(List<List<String>> elements){
+
+        System.out.println(elements);
+
+        double totalMass = 0.0;
+
+        for (List<String> element : elements){
+            String thisElem = element.get(0);
+            double elemMass = getElementMassFromJSONArray(thisElem) * Integer.parseInt(element.get(1));
+            totalMass += elemMass;
+        }
+
+        return  totalMass;
+    }
     public double calculateAtomicMass(String calcInput){
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String numbers = "0123456789";
